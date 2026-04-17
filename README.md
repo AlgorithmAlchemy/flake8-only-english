@@ -38,6 +38,10 @@ the codebase.
 pip install flake8-only-english
 ````
 
+```bash
+pip uninstall flake8-only-english
+````
+
 ---
 
 ## Usage
