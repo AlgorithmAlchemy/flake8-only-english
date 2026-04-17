@@ -1,4 +1,4 @@
-# pyproject.toml
+# path/pyproject.toml
 
 [build-system]
 requires = ["setuptools>=42", "wheel"]
@@ -6,26 +6,34 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "flake8-only-english"
-version = "0.3.3"
+version = "0.4.0"
 description = "Flake8 plugin to detect non-English comments and string literals"
 readme = "README.md"
+
 authors = [
     { name = "AlgorithmAlchemy" }
 ]
+
 requires-python = ">=3.8"
-keywords = [
-    "flake8", "linter", "comments", "strings", "non-english", "ascii",
-    "code-quality", "static-analysis", "plugin", "python", "code style",
-    "quality assurance", "code standards"
-]
+
+keywords = ["flake8", "linter", "static-analysis", "code-quality", "python-linter", "comments", "unicode", "non-english", "language-detection", "pre-commit", "developer-tools"]
+
 license = { text = "MIT" }
+
 classifiers = [
-    "Development Status :: 5 - Production/Stable",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: System Administrators",
     "Topic :: Software Development :: Quality Assurance",
+    "Topic :: Software Development :: Bug Tracking",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Text Processing :: Linguistic",
+    "Environment :: Console",
     "Framework :: Flake8",
+    "Typing :: Typed",
+    "Natural Language :: English",
+    "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
@@ -37,10 +45,19 @@ classifiers = [
     "Operating System :: OS Independent"
 ]
 
-dependencies = [
-    "regex>=2021.4.4"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "flake8",
+    "build",
+    "twine"
 ]
+
+[project.urls]
+Homepage = "https://github.com/AlgorithmAlchemy/flake8-only-english"
+Issues = "https://github.com/AlgorithmAlchemy/flake8-only-english/issues"
 
 [project.entry-points."flake8.extension"]
 NLE = "flake8_only_english.checker:NonEnglishChecker"
-
