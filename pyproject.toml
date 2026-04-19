@@ -1,4 +1,4 @@
-# path/pyproject.toml
+# pyproject.toml
 
 [build-system]
 requires = ["setuptools>=42", "wheel"]
@@ -6,18 +6,18 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "flake8-only-english"
-version = "0.4.0"
+version = "0.3.3"
 description = "Flake8 plugin to detect non-English comments and string literals"
 readme = "README.md"
-
 authors = [
     { name = "AlgorithmAlchemy" }
 ]
-
 requires-python = ">=3.8"
-
-keywords = ["flake8", "linter", "static-analysis", "code-quality", "python-linter", "comments", "unicode", "non-english", "language-detection", "pre-commit", "developer-tools"]
-
+keywords = [
+    "flake8", "linter", "comments", "strings", "non-english", "ascii",
+    "code-quality", "static-analysis", "plugin", "python", "code style",
+    "quality assurance", "code standards"
+]
 license = { text = "MIT" }
 
 classifiers = [
@@ -45,7 +45,9 @@ classifiers = [
     "Operating System :: OS Independent"
 ]
 
+
 dependencies = []
+
 
 [project.optional-dependencies]
 dev = [
