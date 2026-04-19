@@ -1,7 +1,4 @@
-
 # flake8-only-english
-
-`⭐️ Thanks everyone who has starred the project, it means a lot!`
 
 [![PyPI version](https://img.shields.io/pypi/v/flake8-only-english.svg?logo=pypi&logoColor=white)](https://pypi.org/project/flake8-only-english/)
 Install from **PyPI** by clicking the badge above
@@ -12,44 +9,22 @@ View the **source code on GitHub**
 ![Downloads](https://pepy.tech/badge/flake8-only-english)
 ![License](https://img.shields.io/pypi/l/flake8-only-english.svg)
 
----
-
-## Overview
-
-**flake8-only-english** is a Flake8 plugin that enforces English-only text in Python code.
-
-It detects and reports any **non-ASCII / non-English characters** in:
-
-- comments
-- docstrings
-- string literals
-
-This helps maintain consistency and readability in international teams and corporate codebases.
+**Flake8 plugin that enforces corporate code style by detecting and reporting any only-english text in Python source
+code.**  
+It ensures that comments, docstrings, and string literals are written in English only, maintaining consistency across
+the codebase.
 
 ---
 
 ## Features
 
-- Detects non-English text in:
-  - comments (`# ...`)
-  - docstrings (`""" ... """`, `''' ... '''`)
-  - string literals (`"..."`, `'...'`, f-strings, raw strings)
-- Supports:
-  - nested structures
-  - f-strings
-  - async functions, classes, properties
-- Respects `# noqa`:
-  - `# noqa`
-  - `# noqa: NLE001`
-  - `# noqa: NLE002`
-  - `# noqa: NLE003`
-- Ignores:
-  - URLs
-  - numeric-only strings/comments
-  - whitespace-only content
-- Fully compatible with:
-  - Flake8
-  - pre-commit
+* Scans Python files for **only-english characters** in:
+    * Comments (`# ...`)
+    * Docstrings (`""" ... """` / `''' ... '''`)
+    * String literals (`"..."` / `'...'`)
+* Raises a linting error (`NL001`) when only-english text is found.
+* Works seamlessly with **Flake8** and **pre-commit hooks**.
+* Lightweight and dependency-minimal.
 
 ---
 
@@ -59,34 +34,32 @@ This helps maintain consistency and readability in international teams and corpo
 pip install flake8-only-english
 ````
 
-Uninstall:
-
-```bash
-pip uninstall flake8-only-english
-```
-
 ---
 
 ## Usage
 
-Run with Flake8:
+Run normally via `flake8`:
 
 ```bash
-flake8 .
+flake8 app
 ```
-
-Filter only this plugin:
 
 ```bash
 flake8 --select=NLE
 ```
 
-Specific rules:
+```bash
+flake8 --select=NLE001
+```
 
 ```bash
-flake8 --select=NLE001  # comments
-flake8 --select=NLE002  # strings
-flake8 --select=NLE003  # docstrings
+flake8 --select=NLE002
+```
+
+Example output:
+
+```
+/example.py:5:10: NL001 only-english text detected in comment or string
 ```
 
 ---
@@ -94,71 +67,36 @@ flake8 --select=NLE003  # docstrings
 ## Example
 
 ```python
-# Valid
+# This is a valid English comment
 def hello():
     """Valid English docstring"""
-    return "Hello world"
+    msg = "Hello world"
+    return msg
 ```
 
+If only-english text is introduced, it will be flagged:
+
 ```python
-# Invalid
+# Comment with only-english text  # 
 def hello():
-    """Привет"""
-    return "Hello"
-```
-
-Output:
-
-```
-example.py:3:0: NLE003 Non-English text in docstring
+    """Function description with only-english text"""  # 
+    msg = "String with only-english text"  # 
+    return "Hello"  
 ```
 
 ---
 
-## Error Codes
+## Example (with pre-commit)
 
-* **NLE001** — Non-English text in comment
-* **NLE002** — Non-English text in string literal
-* **NLE003** — Non-English text in docstring
-
----
-
-## Configuration
-
-Disable checks via Flake8 options:
-
-```bash
-flake8 --no-nle-comments
-flake8 --no-nle-strings
-```
-
----
-
-## Ignoring Errors
-
-Use `noqa`:
-
-```python
-print("Привет")  # noqa: NLE002
-```
-
-Disable all checks on a line:
-
-```python
-print("Привет")  # noqa
-```
-
----
-
-## pre-commit Integration
+Add to `.pre-commit-config.yaml`:
 
 ```yaml
 repos:
   - repo: https://github.com/AlgorithmAlchemy/flake8-only-english
-    rev: v0.4.2
+    rev: v0.1.0
     hooks:
       - id: flake8
-        additional_dependencies: [flake8-only-english]
+        additional_dependencies: [ flake8-only-english ]
 ```
 
 Run:
@@ -169,7 +107,15 @@ pre-commit run --all-files
 
 ---
 
+## Error Codes
+
+* **NL001** — only-english text detected in comment, docstring, or string literal.
+
+---
+
 ## Development
+
+Clone and install in editable mode:
 
 ```bash
 git clone https://github.com/AlgorithmAlchemy/flake8-only-english
@@ -182,4 +128,4 @@ pytest
 
 ## License
 
-MIT License © 2026 AlgorithmAlchemy
+MIT License © 2025 [AlgorithmAlchemy](https://github.com/AlgorithmAlchemy)
